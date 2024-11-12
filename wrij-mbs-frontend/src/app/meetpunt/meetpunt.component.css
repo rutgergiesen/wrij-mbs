@@ -1,0 +1,43 @@
+.box_meetpunt{
+    width: 100%;
+    font-size: 1em;
+}
+
+.coordinaat{
+    width: 90px;
+}
+
+.child-form-field{
+    margin-top: 16px;
+    appearance: "outline";
+}
+.child-form-input{
+    border: none;
+    background: none;
+    padding: 0;
+    outline: none;
+    font: inherit;
+
+}
+
+
+
+
+/*
+input[name="meetpunt_stukprijs"] {
+    width: 6px;
+}
+
+
+/*label[for="meetpunt_naam"]{
+    width: 50px;
+}*/
+/*
+input[name="meetpunt_naam"] {
+    width: 212px;
+}
+input[name="meetpunt_x"], input[name="meetpunt_y"]{
+    width: 60px;
+}
+*/
+

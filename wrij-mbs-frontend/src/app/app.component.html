@@ -1,0 +1,40 @@
+<ng-container *ngIf="true">
+  LOGGED IN!
+
+</ng-container>
+
+<nav class="navbar sticky-top navbar-expand-sm navbar-light" >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="assets/brand/wrij_logo_mbs.jpg" alt="" height="40" class="d-inline-block align-text-top">
+      </a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a routerLink="/meetplannen" class="nav-link" aria-current="page">Meetplannen</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/meetlocaties" class="nav-link" aria-current="page" href="#">Meetlocaties</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/kosten" class="nav-link">Kosten</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Jaarplan</a>
+          </li> -->
+          <li class="nav-item">
+            <a routerLink="/meetpakketten" class="nav-link" href="#">Pakketten</a>
+          </li>
+        </ul>
+        <a routerLink="/logout" href="#">Uitloggen</a>
+    </div>
+    
+</nav>
+
+<div class="p-2">
+    <app-toast-container class="usermessages" aria-live="polite" aria-atomic="true"></app-toast-container>
+    <router-outlet></router-outlet>
+  
+</div>
+<!-- <div class="messages"> -->
+<app-messages></app-messages>
+<!-- </div> -->

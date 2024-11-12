@@ -1,0 +1,41 @@
+<div class="container-fluid maincontent">
+    <div class="row">
+        <div class="col-6"><h3>Pakketten</h3></div>
+        <div class="col-6 d-flex justify-content-end">  
+            <!-- <label for="search-box">Zoek locatie&nbsp;</label> -->
+            
+            <button class="btn btn-primary" routerLink="/meetpakket">Nieuw meetpakket aanmaken</button>
+
+        </div> 
+    </div>
+    <input #searchBox size="100" id="search-box" (input)="search(searchBox.value)" placeholder="Meetpakket zoeken" class="mt-2" />
+    <div *ngIf="meetpakketten$ | async as meetpakketten else noResults">
+        <table *ngIf="meetpakketten.length > 0 else noResults" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Naam</th>
+                    <th>Omschrijving</th>  
+                    <th>Type</th>
+                    <th>Valuta</th>
+                    <th>Stukprijs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let meetpakket of meetpakketten" routerLink="/meetpakket/{{meetpakket.id}}">
+                    <!-- <tr *ngFor="let meetplan of meetplannen" routerLink="/meetplan/{{meetplan.id}}"></tr> -->
+                    <td class="selectable">{{ meetpakket.id }}</td>
+                    <td class="selectable">{{ meetpakket.naam }}</td>
+                    <td class="selectable">{{ meetpakket.omschrijving }}</td>
+                    <td class="selectable">{{ meetpakket.type }}</td>
+                    <td class="selectable">{{ meetpakket.valuta }}</td>
+                    <td class="selectable">{{ meetpakket.stukprijs }}</td>
+                </tr>           
+            </tbody>
+        </table>       
+    </div>
+    <ng-template #noResults>
+        <p>Geen meetpakketten gevonden</p>
+    </ng-template>
+
+  </div>

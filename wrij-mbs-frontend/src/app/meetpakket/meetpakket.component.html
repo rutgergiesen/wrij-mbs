@@ -1,0 +1,107 @@
+<form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)" class="needs-validation" novalidate>
+    <div class="form-floating mb-2">
+      <label for="id" class="form-label">ID</label>
+      <input
+        id="id"
+        type="text"
+        name="id"
+        [(ngModel)]="meetpakket.id"
+        class="form-control"
+        disabled
+      />
+    </div>
+  
+    <div class="form-floating mb-2">
+      <input
+        id="naam"
+        type="text"
+        name="naam"
+        placeholder="Naam"
+        [(ngModel)]="meetpakket.naam"
+        #naam="ngModel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': naam.invalid && naam.touched }"
+        required
+      />
+      <label class="form-label" for="naam">Naam</label>
+      <div *ngIf="naam.invalid && naam.touched" class="invalid-feedback">
+        Naam is verplicht
+      </div>
+    </div>
+  
+    <div class="form-floating mb-2">
+      <input
+        id="omschrijving"
+        type="text"
+        name="omschrijving"
+        placeholder="Omschrijving"
+        [(ngModel)]="meetpakket.omschrijving"
+        #omschrijving="ngModel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': omschrijving.invalid && omschrijving.touched }"
+        required
+      />
+      <label for="omschrijving" class="form-label">Omschrijving</label>
+      <div *ngIf="omschrijving.invalid && omschrijving.touched" class="invalid-feedback">
+        Omschrijving is verplicht
+      </div>
+    </div>
+
+    <div class="form-floating mb-2">
+        <select
+          id="type"
+          name="type"
+          [(ngModel)]="meetpakket.type"
+          #type="ngModel"
+          class="form-select"
+          [ngClass]="{ 'is-invalid': type.invalid && type.touched }"
+          required
+        >
+          <option value="Pakket">Pakket</option>
+          <option value="Individueel">Individueel</option>
+        </select>
+        <label for="type" class="form-label">Type</label>
+        <div *ngIf="type.invalid && type.touched" class="invalid-feedback">
+          Type is verplicht
+        </div>
+      </div>
+  
+    <div class="form-floating mb-2">
+      <select
+        id="valuta"
+        name="valuta"
+        [(ngModel)]="meetpakket.valuta"
+        #valuta="ngModel"
+        class="form-select"
+        [ngClass]="{ 'is-invalid': valuta.invalid && valuta.touched }"
+        required
+      >
+        <option value="Euro">Euro</option>
+        <option value="ILOW">ILOW</option>
+      </select>
+      <label for="valuta" class="form-label">Valuta</label>
+      <div *ngIf="valuta.invalid && valuta.touched" class="invalid-feedback">
+        Valuta is verplicht
+      </div>
+    </div>
+  
+    <div class="form-floating mb-2">
+      <input
+        id="stukprijs"
+        type="number"
+        name="stukprijs"
+        [(ngModel)]="meetpakket.stukprijs"
+        #stukprijs="ngModel"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': stukprijs.invalid && stukprijs.touched }"
+        required
+        min="0"
+      />
+      <label for="stukprijs" class="form-label">Stukprijs</label>
+      <div *ngIf="stukprijs.invalid && stukprijs.touched" class="invalid-feedback">
+        Enter a valid price
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Opslaan</button>
+  </form>

@@ -1,0 +1,43 @@
+<div class="container-fluid maincontent">
+
+    <div class="row">
+        <div class="col-6"><h3>Meetplannen</h3></div>
+        <div class="col-6 d-flex justify-content-end">  
+            <!-- <label for="search-box">Zoek locatie&nbsp;</label> -->
+            <button type="button" routerLink="/meetplan/" class="btn btn-primary">Nieuw meetplan invoeren</button>
+        </div> 
+    </div>
+    <!-- <label for="search-box">Zoek locatie&nbsp;</label> -->
+    <input #searchBox size="100" id="search-box" (input)="search(searchBox.value)" placeholder="Zoek meetplan" class="mt-2" /> 
+    <div *ngIf="meetplannen$ | async as meetplannen else noResults">
+        <table *ngIf="meetplannen.length > 0 else noResults" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <!-- <th>Behoefte</th> -->
+                    <th>Opdrachtgever</th>  
+                    <th>Contactpersoon</th>
+                    <th>Van</th>
+                    <th>Tot</th>
+                    <th>Type</th>
+                    <th>Projectnummer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let meetplan of meetplannen" routerLink="/meetplan/{{meetplan.id}}">
+                    <td class="selectable">{{ meetplan.naam }}</td>
+                    <!-- <td class="selectable">{{ meetplan.behoefte?.slice(0,40) }}...</td> -->
+                    <td class="selectable">{{ meetplan.opdrachtgever }}</td>
+                    <td class="selectable">{{ meetplan.contactpersoon }}</td>
+                    <td class="selectable">{{ meetplan.startjaar }}</td>
+                    <td class="selectable">{{ meetplan.eindjaar }}</td>
+                    <td class="selectable">{{ meetplan.type }}</td>
+                    <td class="selectable">{{ meetplan.projectnr }}</td>
+                </tr>            
+            </tbody>
+        </table>
+  <!-- </div> -->
+</div>
+<ng-template #noResults>
+    <p>Geen meetplannen gevonden</p>
+</ng-template>

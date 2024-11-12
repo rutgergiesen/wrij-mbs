@@ -1,0 +1,263 @@
+<!--
+Order component meetplanId: {{meetplanId}}<br>
+Order component meetpuntId: {{meetpuntId}}<br>
+Order component isNewOrder: {{isNewOrder}}<br><br>
+-->
+<!--
+<div *ngIf="order" class="container-fluid">
+    -->
+
+    <div *ngIf="order" class="" >
+      <!--  Index: {{counter}}<br/>
+        Even: {{even}}<br/>
+        Odd: {{odd}}<br/>
+      -->
+        <form #orderForm="ngForm">
+        <table class="table table-striped mb-0" >
+        <thead *ngIf="counter == 0">
+            <tr>
+                <th scope="col">Meetpakket</th>
+                <th scope="col">Alternatie</th>
+                <th scope="col">Jan</th>
+                <th scope="col">Feb</th>
+                <th scope="col">Mrt</th>
+                <th scope="col">Apr</th>
+                <th scope="col">Mei</th>
+                <th scope="col">Jun</th>
+                <th scope="col">Jul</th>
+                <th scope="col">Aug</th>
+                <th scope="col">Sep</th>
+                <th scope="col">Okt</th>
+                <th scope="col">Nov</th>
+                <th scope="col">Dec</th>
+                <th scope="col">Toelichting</th>
+                <th scope="col" class="readonly">Valuta</th>
+                <th scope="col" class="readonly">Stukprijs</th>
+                <th scope="col" class="readonly">Orderprijs</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{ 'table-light': odd && !isNewOrder, 'table-secondary': even && !isNewOrder, 'table-info' : isNewOrder}">
+            
+                    <td>
+                        <!--<input type="text" class="form-control" name="meetpakket" [(ngModel)]="order.meetpakket">-->
+                        <!--<div class="form-control">
+                        <div>-->
+                            <select class="form-select input_select_meetpakket" id="meetpakket" name="meetpakket" [(ngModel)]="order.meetpakket">
+                                <option *ngFor="let meetpakket of meetpakketOpties" [value]="meetpakket">{{meetpakket}}</option>
+                            </select>
+                        <!--</div>-->
+                    </td>
+                    <td>
+                        <!--<input type="text" class="form-control" name="alternatie" [(ngModel)]="order.alternatie">-->
+                        <select class="form-select input_select_alternatie" id="alternatie" name="alternatie" [(ngModel)]="order.alternatie">
+                            <option *ngFor="let alternatie of alternatieOpties" [value]="alternatie">{{alternatie}}</option>
+                        </select>
+                    </td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="jan" [(ngModel)]="order.jan"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="feb" [(ngModel)]="order.feb"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="mrt" [(ngModel)]="order.mrt"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="apr" [(ngModel)]="order.apr"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="mei" [(ngModel)]="order.mei"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="jun" [(ngModel)]="order.jun"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="jul" [(ngModel)]="order.jul"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="aug" [(ngModel)]="order.aug"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="sep" [(ngModel)]="order.sep"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="okt" [(ngModel)]="order.okt"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="nov" [(ngModel)]="order.nov"></td>
+                    <td class="order_input_num_metingen"><input type="number" class="form-control" name="dec" [(ngModel)]="order.dec"></td>
+                    <td class="order_toelichting"><input type="text" class="form-control" name="toelichting" [(ngModel)]="order.toelichting"></td>
+                    <td class="readonly order_valuta">{{order.valuta}}</td>
+                    <td class="readonly order_stukprijs">{{order.stukprijs}}</td>
+                    <td class="readonly order_orderprijs">{{order.orderprijs}}</td>
+                    <td>    
+                        <button type="button" class="btn btn-primary">
+                            <i class="bi bi-check2-square"></i>
+                        </button>
+                    </td>
+                    <td class="order_input_buttons">       
+                        <button type="button" class="btn btn-secondary"><i class="bi bi-x-square"></i></button>              
+                        <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button> 
+                    </td>
+              </tr>
+        </tbody>
+        </table>
+        </form>
+    </div>
+
+<!--
+<div *ngIf="order" class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <label>Meetpakket:</label>
+        <input type="text" class="form-control" name="meetpakket" [(ngModel)]="order.meetpakket" size="150">
+      </div>
+      <div class="col">
+        <label>Alternatie:</label>
+        <input type="text" class="form-control" name="alternatie" [(ngModel)]="order.alternatie">
+      </div>
+      <div class="col-lg">
+        <label>Jan:</label>
+        <input type="number" class="form-control" name="jan" [(ngModel)]="order.jan" >
+      </div>
+      <div class="col">
+        <label>Feb:</label>
+        <input type="number" class="form-control" name="feb" [(ngModel)]="order.feb">
+      </div>
+      <div class="col">
+        <label>Mrt:</label>
+        <input type="number" class="form-control" name="mrt" [(ngModel)]="order.mrt">
+      </div>
+      <div class="col">
+        <label>Apr:</label>
+        <input type="number" class="form-control" name="apr" [(ngModel)]="order.apr">
+      </div>
+      <div class="col">
+        <label>Mei:</label>
+        <input type="number" class="form-control" name="mei" [(ngModel)]="order.mei">
+      </div>
+      <div class="col">
+        <label>Jun:</label>
+        <input type="number" class="form-control" name="jun" [(ngModel)]="order.jun">
+      </div>
+      <div class="col">
+        <label>Jul:</label>
+        <input type="number" class="form-control" name="jul" [(ngModel)]="order.jul">
+      </div>
+      <div class="col">
+        <label>Aug:</label>
+        <input type="number" class="form-control" name="aug" [(ngModel)]="order.aug">
+      </div>
+      <div class="col">
+        <label>Sep:</label>
+        <input type="number" class="form-control" name="sep" [(ngModel)]="order.sep">
+      </div>
+      <div class="col">
+        <label>Okt:</label>
+        <input type="number" class="form-control" name="okt" [(ngModel)]="order.okt">
+      </div>
+      <div class="col">
+        <label>Nov:</label>
+        <input type="number" class="form-control" name="nov" [(ngModel)]="order.nov">
+      </div>
+      <div class="col">
+        <label>Dec:</label>
+        <input type="number" class="form-control" name="dec" [(ngModel)]="order.dec">
+      </div>
+      <div class="col">
+        <label>Toelichting:</label>
+        <input type="text" class="form-control" name="toelichting" [(ngModel)]="order.toelichting">
+      </div>
+      <div class="col">
+        <label>Valuta:</label>
+        <input type="text" class="form-control" name="valuta" [(ngModel)]="order.valuta">
+      </div>
+      <div class="col">
+        <label>Stukprijs:</label>
+        <input type="number" class="form-control" name="stukprijs" [(ngModel)]="order.stukprijs">
+      </div>
+      <div class="col">
+        <label>orderPrijs:</label>
+        <input type="number" class="form-control" name="orderprijs" [(ngModel)]="order.orderprijs">
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary">
+          <i class="bi bi-check2-square"></i> 
+        </button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-secondary"><i class="bi bi-x-square"></i></button>
+        <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+      </div>
+    </div>
+  </div>
+-->
+<!--
+<table mat-table [dataSource]="orderList" class="">
+    <ng-container matColumnDef="meetpakket">
+        <th mat-header-cell *matHeaderCellDef>Meetpakket</th>
+        <td mat-cell *matCellDef="let order"> {{ order.meetpakket }}</td>
+    </ng-container>
+    <ng-container matColumnDef="toelichting">
+        <th mat-header-cell *matHeaderCellDef>Toelichting</th>
+        <td mat-cell *matCellDef="let order"><input type="text" value="{{ order.toelichting }}" /></td>
+    </ng-container>
+    <ng-container matColumnDef="valuta">
+        <th mat-header-cell *matHeaderCellDef>Prijstype</th>
+        <td mat-cell *matCellDef="let order">
+                <select matNativeControl name="prijsType">
+                    <option value=""></option>
+                    <option *ngFor="let prijsType of prijsTypes" 
+                        [value]="prijsType.value" 
+                        [selected]="order.valuta.toLowerCase() == prijsType.value">
+                            {{prijsType.viewValue}} 
+                    </option>
+                </select> 
+        </td>
+        <ng-container matColumnDef="stukprijs" >
+            <th mat-header-cell *matHeaderCellDef>Prijs/stuk</th>
+            <td mat-cell *matCellDef="let order"><input type="text"  value="{{ order.stukprijs }}" class="max_int_3"/></td>
+        </ng-container>
+        <ng-container matColumnDef="alternatie">
+            <th mat-header-cell *matHeaderCellDef>Alternatie</th>
+            <td mat-cell *matCellDef="let order"> {{ order.alternatie }}</td>
+        </ng-container>
+        <ng-container matColumnDef="jan">
+            <th mat-header-cell *matHeaderCellDef>jan</th>
+            <td mat-cell *matCellDef="let order"><input type="number" maxlength="1" [(ngModel)]="order.jan"/></td>
+        </ng-container>
+        <ng-container matColumnDef="feb">
+            <th mat-header-cell *matHeaderCellDef>feb</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.feb"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="mrt">
+            <th mat-header-cell *matHeaderCellDef>mrt</th>
+            <td mat-cell *matCellDef="let order"> <mat-checkbox [(ngModel)]="order.mrt"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="apr">
+            <th mat-header-cell *matHeaderCellDef>apr</th>
+            <td mat-cell *matCellDef="let order"> <mat-checkbox [(ngModel)]="order.apr"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="mei">
+            <th mat-header-cell *matHeaderCellDef>mei</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.mei"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="jun">
+            <th mat-header-cell *matHeaderCellDef>jun</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.jun"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="jul">
+            <th mat-header-cell *matHeaderCellDef>jul</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.jul"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="aug">
+            <th mat-header-cell *matHeaderCellDef>aug</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.aug"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="sep">
+            <th mat-header-cell *matHeaderCellDef>sep</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.sep"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="okt">
+            <th mat-header-cell *matHeaderCellDef>okt</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.okt"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="nov">
+            <th mat-header-cell *matHeaderCellDef>nov</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.okt"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="dec">
+            <th mat-header-cell *matHeaderCellDef>dec</th>
+            <td mat-cell *matCellDef="let order"><mat-checkbox [(ngModel)]="order.dec"></mat-checkbox></td>
+        </ng-container>
+        <ng-container matColumnDef="orderprijs">
+            <th mat-header-cell *matHeaderCellDef>orderPrijs</th>
+            <td mat-cell *matCellDef="let order"> {{ order.valuta +' '+ order.orderprijs }} </td>
+        </ng-container>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+-->

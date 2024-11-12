@@ -1,0 +1,53 @@
+{
+  "name": "wij-mbs-backend",
+  "version": "0.0.1",
+  "description": "Backend WRIJ meetplan beheer systeem",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon src/server.ts",
+    "jasmine": "jasmine",
+    "test": "npm run build && npm run jasmine",
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rutgergiesen/wij-mbs-backend.git"
+  },
+  "author": "Rutger Giesen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rutgergiesen/wij-mbs-backend/issues"
+  },
+  "homepage": "https://github.com/rutgergiesen/wij-mbs-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "db-migrate": "^0.11.14",
+    "db-migrate-pg": "^1.5.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.12.0",
+    "supertest": "^7.0.0",
+    "typescript": "^5.5.3",
+    "winston": "^3.15.0"
+  },
+  "devDependencies": {
+    "@types/morgan": "^1.9.9",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
+    "@types/jasmine": "^5.1.4",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^20.14.9",
+    "@types/pg": "^8.11.6",
+    "@types/supertest": "^6.0.2",
+    "jasmine": "^5.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.4.0",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.2.0"
+  }
+}

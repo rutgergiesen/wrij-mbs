@@ -1,0 +1,81 @@
+ 
+.box_meetplan{
+    width: 100%; /*60%*/
+    max-width: 900px;
+}
+
+.box{
+    margin: 10px;
+    padding: 0;
+    background-color: #fff;
+    float: left;
+  }
+
+
+/*button {
+    width: 60%;
+    max-width: 318px;
+    margin-left: 140px;
+  }
+.box2{
+    display: inline-block;
+    width: 20%;
+    height: 400px;
+    margin: 1em;
+    background-color: blueviolet;
+    vertical-align: top;
+}
+
+span{
+    width: 200px;
+}*/
+
+/*
+input, textarea{
+    width: 60%;
+    max-width: 300px;
+    padding: 8px;
+    margin-bottom: 6px;
+    border: 1px solid #1c87c9;
+}
+input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+button {
+    width: 60%;
+    max-width: 318px;
+    margin-left: 140PX;
+    padding: 8px;
+    border: none;
+    background: #1c87c9; 
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    }
+button:hover {
+    background: #2371a0;
+} 
+*/
+
+
+
+textarea{
+    height: auto;
+}
+
+.behoefte_text{
+    height: 130px;
+    width: 100%;
+}
+
+table{
+    padding: 0;
+    margin: 0;
+}
+
+mat-grid-tile{
+    margin: 0;
+}
+

@@ -1,0 +1,14 @@
+/* DROP ALL TABLES*/
+DROP FUNCTION IF EXISTS KostenOntdubbelen() CASCADE;
+DROP FUNCTION IF EXISTS OrderKosten_calc() CASCADE;
+DROP FUNCTION IF EXISTS OrderKosten_delete() CASCADE;
+DROP FUNCTION IF EXISTS kosten_regels_changed() CASCADE;
+
+DROP TABLE IF EXISTS tblKosten;
+DROP TABLE IF EXISTS tblOntdubbelregels;
+DROP TABLE IF EXISTS tblKostenregels;
+DROP TABLE IF EXISTS tblOrders;
+DROP TABLE IF EXISTS tblPrioriteiten;
+DROP TABLE IF EXISTS tblMeetplannen;
+DROP TABLE IF EXISTS tblMeetpakketten;
+DROP TABLE IF EXISTS tblMeetpunten;

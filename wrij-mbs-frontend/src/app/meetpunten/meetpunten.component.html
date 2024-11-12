@@ -1,0 +1,96 @@
+<div *ngIf="!(meetpunten.length > 0)" class="row">
+  <div class="col-6">
+    <h3 class="card-title">Meetlocaties</h3>
+  </div>
+  <div  class="col-6 d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#zoekMeetlocaties">
+        <i class="bi bi-check2-square"></i> Meetlocatie(s) toevoegen
+      </button>
+  </div>
+</div>
+
+<div *ngIf="meetpunten.length > 0" class="row">
+  <div class="col-6">
+    <h3 class="card-title">Meetlocaties</h3>
+  </div>
+    <div class="col-6 d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary" (click)="accordion.expandAll()">Alles uitklappen</button>
+      <button type="button" class="btn btn-secondary" (click)="accordion.collapseAll()">Alles inklappen</button>&nbsp;&nbsp;
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#zoekMeetlocaties">
+        <i class="bi bi-check2-square"></i> Meetlocatie(s) toevoegen
+      </button>
+    </div>
+  <div ngbAccordion #accordion="ngbAccordion">
+    <div *ngFor="let currentMeetpunt of meetpunten" ngbAccordionItem [collapsed]="false">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton>{{ currentMeetpunt.code }} {{ currentMeetpunt.naam }}</button>
+      </h2>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionContent>
+          <app-orders [meetpuntId]="currentMeetpunt.id" [meetplanId]="meetplanId" [retrieveOrders]="true" [meetpakketten]="meetpakketten" (ordersChangedEvent)="ordersChanged()"></app-orders>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngFor="let currentMeetpunt of meetpunten" class="accordion" id="meetpuntenPanel">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#panelMeetpunt' + currentMeetpunt.code" 
+            aria-expanded="true" [attr.aria-controls]="'panelMeetpunt' + currentMeetpunt.code">
+            <h6>{{ currentMeetpunt.code }} {{ currentMeetpunt.naam }}</h6>
+        </button>
+    </h2>
+    <div class="accordion-body p-0">
+        <div id="panelMeetpunt{{currentMeetpunt.code}}" class="accordion-collapse collapse show">
+          <app-orders [meetpuntId]="currentMeetpunt.id" [meetplanId]="meetplanId" [retrieveOrders]="true" [meetpakketten]="meetpakketten" (ordersChangedEvent)="ordersChanged()"></app-orders>
+        </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Scrollable modal meetpunten zoeken -->
+<div class="modal fade" id="zoekMeetlocaties" tabindex="-1" aria-labelledby="zoekMeetlocatiesModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="zoekMeetlocatiesModalLabel">Meetlocatie(s) selecteren</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton></button>
+      </div>
+      <div class="modal-body">
+
+        <app-zoek-meetpunten [meetplanId]="meetplanId" (selectedMeetpuntenEvent)="setMeetpuntenSelectie($event)"></app-zoek-meetpunten>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" #closebutton></i>Annuleren</button>
+        <button type="button" (click)="addMeetpuntenSelectie()" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-check2-square"></i>Locatie(s) toevoegen</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scrollable modal nieuw meetpunt aanmaken -->
+<div class="modal fade" id="newMeetlocatieModal" tabindex="-1" aria-labelledby="newMeetlocatieModalLabel" aria-hidden="true" #testModal>
+  <div class="modal-dialog modal-dialog-scrollable modal-l">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newMeetlocatieModalLabel">Nieuwe meetlocatie</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closebutton2></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- <app-meetpunt [nrOfMeetpuntenCreated]="nrOfMeetpuntenCreated" (newMeetpuntEvent)="setNewMeetpunt($event)"></app-meetpunt> -->
+        <app-meetpunt [nrOfMeetpuntenCreated]="nrOfMeetpuntenCreated" (meetpuntCancelledEvent)="cancelNewMeetpunt()" (newMeetpuntEvent)="addNewMeetpunt($event)"></app-meetpunt>
+        
+      </div>
+      <!--<div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square" #closebutton2></i>Annuleren</button>
+        <button type="button" (click)="addNewMeetpunt()" class="btn btn-primary"><i class="bi bi-check2-square"></i>Locatie toevoegen</button> 
+        
+      </div>-->
+    </div>
+  </div>
+</div>

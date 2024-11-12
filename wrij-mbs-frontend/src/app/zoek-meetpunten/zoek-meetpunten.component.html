@@ -1,0 +1,35 @@
+<div class="container-fluid maincontent">
+    <!-- <label for="search-box">Zoek locatie&nbsp;</label> -->
+    <input #searchBox size="25" id="search-box" (input)="search(searchBox.value)" placeholder="Bestaande locatie zoeken" />
+    - of -  <button class="btn btn-primary" data-bs-target="#newMeetlocatieModal" data-bs-toggle="modal">Nieuwe locatie aanmaken</button>
+    <div *ngIf="meetpunten$ | async as meetpunten else noResults">
+        <table *ngIf="meetpunten.length > 0 else noResults" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Selectie</th>
+                    <th>Code</th>
+                    <th>Naam</th>  
+                    <th>X-coördinaat</th>
+                    <th>Y-coördinaat</th>
+                    <th>Toelichting</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let meetpunt of meetpunten" [class.table-active]="meetpunt.isSelected">
+                    <td (click)="selectMeetpunt(meetpunt)"><input type="checkbox" [(ngModel)]="meetpunt.isSelected"></td>
+                    <td (click)="selectMeetpunt(meetpunt)" class="selectable">{{meetpunt.code}}</td>
+                    <td (click)="selectMeetpunt(meetpunt)" class="selectable">{{meetpunt.naam}}</td>
+                    <td (click)="selectMeetpunt(meetpunt)" class="selectable">{{meetpunt.x}}</td>
+                    <td (click)="selectMeetpunt(meetpunt)" class="selectable">{{meetpunt.y}}</td>
+                    <td (click)="selectMeetpunt(meetpunt)" class="selectable">{{meetpunt.toelichting}}</td>
+                </tr>            
+            </tbody>
+
+            
+        </table>       
+    </div>
+    <ng-template #noResults>
+        <p>Geen meetlocaties gevonden</p>
+    </ng-template>
+
+  </div>

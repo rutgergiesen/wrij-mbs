@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <form (ngSubmit)="onSubmit(meetpuntform)" #meetpuntform="ngForm" class="needs-validation" novalidate>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="meetpuntnaam" name="meetpuntnaam" placeholder="Naam locatie" [(ngModel)]="meetpunt.naam" minlength="6" maxlength="150" required #meetpuntnaam="ngModel">
+          <label for="meetpuntnaam">Naam locatie</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="meetpuntcode" placeholder="" [(ngModel)]="meetpunt.code" minlength="5" name="meetpuntcode" #meetpuntcode="ngModel" required>
+        <label for="meetpuntcode">Code</label>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-floating mb-2">
+        <input type="number" class="form-control" id="meetpunt_x" name="meetpunt_x" placeholder="X-coördinaat" [(ngModel)]="meetpunt.x" min="100000" max="999999" #meetpunt_x="ngModel" required>
+        <label for="meetpunt_x">X-coördinaat</label>             
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-floating mb-2">
+        <input type="number" class="form-control" id="meetpunt_y" name="meetpunt_y" placeholder="Y-coördinaat" [(ngModel)]="meetpunt.y" min="100000" max="999999" #meetpunt_y="ngModel" required>
+        <label for="meetpunt_y">Y-coördinaat</label>             
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div *ngIf="meetpuntnaam.invalid && (meetpuntnaam.dirty || meetpuntnaam.touched)" class="alert m-0 p-0">
+      <div *ngIf="meetpuntnaam.errors?.['required']">Naam locatie is een verplicht veld</div>
+      <div *ngIf="meetpuntnaam.errors?.['minlength']">Minimale lengte voor naam locatie is 6 karakters</div>
+      <div *ngIf="meetpuntnaam.errors?.['maxlength']">Maximale lengte voor naam locatie is 150 karakters</div>
+  </div>
+    <div *ngIf="meetpuntcode.invalid && (meetpuntcode.dirty || meetpuntcode.touched)" class="alert m-0 p-0">
+      <div *ngIf="meetpuntcode.errors?.['required']">Code is een verplicht veld</div>
+      <div *ngIf="meetpuntcode.errors?.['minlength']">Minimale lengte voor code is 5 karakters</div>
+    </div>
+    <div *ngIf="meetpunt_x.invalid && (meetpunt_x.dirty || meetpunt_x.touched)" class="alert m-0 p-0">
+      <div *ngIf="meetpunt_x.errors?.['required']">X-coördinaat is een verplicht veld</div>
+      <div *ngIf="meetpunt_x.errors?.['min']">X-coördinaat bestaat uit 6 cijfers</div>
+      <div *ngIf="meetpunt_x.errors?.['max']">X-coördinaat bestaat uit 6 cijfers</div>
+    </div>
+    <div *ngIf="meetpunt_y.invalid && (meetpunt_y.dirty || meetpunt_y.touched)" class="alert m-0 p-0">
+      <div *ngIf="meetpunt_y.errors?.['required']">Y-coördinaat is een verplicht veld</div>
+      <div *ngIf="meetpunt_y.errors?.['min']">Y-coördinaat bestaat uit 6 cijfers</div>
+      <div *ngIf="meetpunt_y.errors?.['max']">Y-coördinaat bestaat uit 6 cijfers</div>
+    </div>
+        TODO: Kaart met locatie
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" id="meetpunt_toelichting" placeholder="" [(ngModel)]="meetpunt.toelichting" maxlength="255" name="meetpunt_toelichting">
+        <label for="meetpunt_toelichting">Toelichting</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" (click)="onCancel()" class="btn btn-secondary justify-content-start" data-bs-dismiss="modal"><i class="bi bi-x-square"></i>Annuleren</button>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <button type="submit" [disabled]="meetpuntform.invalid" class="d-flex btn btn-primary justify-content-end" ><i class="bi bi-check2-square"></i>Locatie toevoegen</button>     
+    </div>
+  </div>
+
+  </form>
+  <!-- <div class="row">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-square"></i>Annuleren</button>
+    <button type="button" (click)="addMeetpunt()" class="btn btn-primary"><i class="bi bi-check2-square"></i>Locatie toevoegen</button>
+  </div> -->
+</div>
+ 
+
+<!--<div *ngIf="meetpunt" class="accordion" id="meetpuntenPanel">
+  <div class="accordion-item">
+      <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#panelMeetpunt' + meetpunt.code" 
+              aria-expanded="true" [attr.aria-controls]="'panelMeetpunt' + meetpunt.code">
+            <div class="container-fluid">
+              <form #meetpuntForm="ngForm">
+                meetplanId: {{meetplanId}}<br>
+                <div class="row">
+                  <div class="col-4">
+                      <h5>{{ meetpunt.naam }} </h5>
+                  </div>
+                  <div class="col-2">
+                    <h6>({{ meetpunt.x }}, {{meetpunt.y }})</h6>
+                  </div>
+                  <div class="col-6">
+                    <button type="button" class="btn btn-primary">
+                      <i class="bi bi-check2-square"></i>
+                      Wijzigen
+                    </button>
+                  </div>
+              </div>
+              </form>
+            </div>
+          </button>
+      </h2>
+      <div class="accordion-body">
+        s
+      </div>
+      <div id="panelMeetpunt{{meetpunt.code}}" class="accordion-collapse collapse show">
+
+        <app-orders [meetpuntId]="meetpunt.id" [meetplanId]="meetplanId" [retrieveOrders]="!isNewMeetpunt"></app-orders>
+      </div>
+  </div>
+</div>
+-->
+
+

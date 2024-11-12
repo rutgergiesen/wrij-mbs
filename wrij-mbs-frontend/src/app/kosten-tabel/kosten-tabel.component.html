@@ -1,0 +1,83 @@
+<!-- Subcomponent van component kosten-tabbellen voor het tonen van één kostentabel -->
+<div *ngIf="kosten.length > 0 else noResults" class="pb-4">
+    <table class="table table-hover table-striped p-5 mb-0">
+        <thead>
+            <tr>
+                <th class="fw-medium">Jaar</th>
+                <th class="fw-medium">Eenheid</th>
+                <th class="table-info">Totaal</th>
+                <th class="fw-medium">Jan</th>
+                <th class="fw-medium">Feb</th>
+                <th class="fw-medium">Mrt</th>
+                <th class="fw-medium">Apr</th> 
+                <th class="fw-medium">Mei</th> 
+                <th class="fw-medium">Jun</th> 
+                <th class="fw-medium">Jul</th> 
+                <th class="fw-medium">Aug</th> 
+                <th class="fw-medium">Sep</th> 
+                <th class="fw-medium">Okt</th> 
+                <th class="fw-medium">Nov</th>
+                <th class="fw-medium">Dec</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let kostenRegel of kosten">
+                <tr >
+                    <td class="fw-light">{{ kostenRegel.jaar }}</td>
+                    <td class="fw-light">{{ kostenRegel.valuta }}</td>
+                    <td class="fw-bold table-info">{{ kostenRegel.jaar_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.jan_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.feb_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.mrt_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.apr_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.mei_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.jun_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.jul_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.aug_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.sep_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.okt_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.nov_bruto }}</td>
+                    <td class="fw-light">{{ kostenRegel.dec_bruto }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-light"></td>
+                    <td class="fw-light"></td>
+                    <td class="fw-bold table-info">{{ kostenRegel.jaar_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.jan_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.feb_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.mrt_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.apr_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.mei_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.jun_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.jul_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.aug_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.sep_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.okt_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.nov_ontdubbeling }}</td>
+                    <td class="fw-light">{{ kostenRegel.dec_ontdubbeling }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-light"></td>
+                    <td class="fw-light"></td>
+                    <td class="fw-bold table-info">{{ kostenRegel.jaar_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.jan_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.feb_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.mrt_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.apr_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.mei_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.jun_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.jul_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.aug_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.sep_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.okt_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.nov_netto }}</td>
+                    <td class="fw-light">{{ kostenRegel.dec_netto }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #noResults>
+    <p>Er zijn geen kosten voor dit meetplan</p>
+</ng-template>

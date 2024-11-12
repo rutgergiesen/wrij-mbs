@@ -1,0 +1,135 @@
+<form #orderForm="ngForm" class="needs-validation" novalidate>
+    <table class="table table-striped mb-0">    
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Meetpakket</th>
+                <th scope="col">Alternatie</th>
+                <th scope="col">Startjaar</th>
+                <th scope="col">Eindjaar</th>
+                <th scope="col">Jan</th>
+                <th scope="col">Feb</th>
+                <th scope="col">Mrt</th>
+                <th scope="col">Apr</th>
+                <th scope="col">Mei</th>
+                <th scope="col">Jun</th>
+                <th scope="col">Jul</th>
+                <th scope="col">Aug</th>
+                <th scope="col">Sep</th>
+                <th scope="col">Okt</th>
+                <th scope="col">Nov</th>
+                <th scope="col">Dec</th>
+                <th scope="col">Toelichting</th>
+                <th scope="col" class="readonly">Valuta</th>
+                <th scope="col" class="readonly">Stukprijs</th>
+                <th scope="col" class="readonly">Orderprijs</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let currentOrder of orders; let counter = index;" [ngClass]="currentOrder.hasChanged ? 'table-info' : ''">
+                <td>{{ currentOrder.id }}</td>
+                <td>
+                    <select class="form-select input_select_meetpakket" id="meetpakket_{{counter}}" name="meetpakket_{{counter}}" [(ngModel)]="currentOrder.meetpakket" (ngModelChange)="modelChange(currentOrder); meetpakketChange(currentOrder)" >
+                        <option *ngFor="let meetpakketOptie of meetpakketten" [value]="meetpakketOptie.id">{{meetpakketOptie.naam}}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select input_select_alternatie" id="alternatie_{{counter}}" name="alternatie_{{counter}}" [(ngModel)]="currentOrder.alternatie" (ngModelChange)="modelChange(currentOrder)">
+                        <option *ngFor="let alternatie of alternatieOpties" [value]="alternatie">{{alternatie}} jaarlijks</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select input_select_jaar" id="startjaar_{{counter}}" name="startjaar_{{counter}}" [(ngModel)]="currentOrder.startjaar" (ngModelChange)="modelChange(currentOrder)">
+                        <option *ngFor="let startjaar of jaarOpties" [value]="startjaar">{{startjaar}}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select input_select_jaar" id="eindjaar_{{counter}}" name="eindjaar_{{counter}}" [(ngModel)]="currentOrder.eindjaar" (ngModelChange)="modelChange(currentOrder)">
+                        <option *ngFor="let eindjaar of jaarOpties" [value]="eindjaar">{{eindjaar}}</option>
+                    </select>
+                </td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="jan_{{counter}}" [(ngModel)]="currentOrder.jan" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="feb_{{counter}}" [(ngModel)]="currentOrder.feb" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="mrt_{{counter}}" [(ngModel)]="currentOrder.mrt" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="apr_{{counter}}" [(ngModel)]="currentOrder.apr" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="mei_{{counter}}" [(ngModel)]="currentOrder.mei" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="jun_{{counter}}" [(ngModel)]="currentOrder.jun" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="jul_{{counter}}" [(ngModel)]="currentOrder.jul" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="aug_{{counter}}" [(ngModel)]="currentOrder.aug" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="sep_{{counter}}" [(ngModel)]="currentOrder.sep" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="okt_{{counter}}" [(ngModel)]="currentOrder.okt" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="nov_{{counter}}" [(ngModel)]="currentOrder.nov" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="dec_{{counter}}" [(ngModel)]="currentOrder.dec" (change)="updateTotaalprijs(currentOrder)" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="order_toelichting"><input type="text" class="form-control" name="toelichting_{{counter}}" [(ngModel)]="currentOrder.toelichting" (ngModelChange)="modelChange(currentOrder)"></td>
+                <td class="readonly order_valuta">{{currentOrder.valuta}}</td>
+                <td class="readonly order_stukprijs">{{currentOrder.stukprijs}}</td>
+                <td class="readonly order_orderprijs">{{currentOrder.orderprijs}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="deleteOrder(counter)"><i class="bi bi-trash"></i></button> 
+                </td>
+            </tr>
+            <tr [ngClass]="newOrder.hasChanged ? 'table-info' : ''">
+                <td>&nbsp;</td>
+                <td>
+                    <select class="form-select input_select_meetpakket" id="meetpakket_new" name="meetpakket_new" [(ngModel)]="newOrder.meetpakket" (ngModelChange)="modelChange(newOrder); meetpakketChange(newOrder)">
+                        <option *ngFor="let meetpakketOptie of meetpakketten" [value]="meetpakketOptie.id">{{ meetpakketOptie.naam }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select input_select_alternatie" id="alternatie_new" name="alternatie_new" [(ngModel)]="newOrder.alternatie" (ngModelChange)="modelChange(newOrder)">
+                        <option *ngFor="let alternatie of alternatieOpties" [value]="alternatie">{{alternatie}} jaarlijks</option>
+                    </select>
+                </td>
+                                <td>
+                    <select class="form-select input_select_jaar" id="startjaar_new" name="startjaar_new" [(ngModel)]="newOrder.startjaar" (ngModelChange)="modelChange(newOrder)">
+                        <option *ngFor="let startjaar of jaarOpties" [value]="startjaar">{{startjaar}}</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-select input_select_jaar" id="eindjaar_new" name="eindjaar_new" [(ngModel)]="newOrder.eindjaar" (ngModelChange)="modelChange(newOrder)">
+                        <option *ngFor="let eindjaar of jaarOpties" [value]="eindjaar">{{eindjaar}}</option>
+                    </select>
+                </td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="jan_new" [(ngModel)]="newOrder.jan" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="feb_new" [(ngModel)]="newOrder.feb" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="mrt_new" [(ngModel)]="newOrder.mrt" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="apr_new" [(ngModel)]="newOrder.apr" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="mei_new" [(ngModel)]="newOrder.mei" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="jun_new" [(ngModel)]="newOrder.jun" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="jul_new" [(ngModel)]="newOrder.jul" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="aug_new" [(ngModel)]="newOrder.aug" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="sep_new" [(ngModel)]="newOrder.sep" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="okt_new" [(ngModel)]="newOrder.okt" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="nov_new" [(ngModel)]="newOrder.nov" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_input_num_metingen"><input type="number" class="form-control" name="dec_new" [(ngModel)]="newOrder.dec" (change)="updateTotaalprijs(newOrder)" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="order_toelichting"><input type="text" class="form-control" name="toelichting_new" [(ngModel)]="newOrder.toelichting" (ngModelChange)="modelChange(newOrder)"></td>
+                <td class="readonly order_valuta">{{newOrder.valuta}}</td>
+                <td class="readonly order_stukprijs">{{newOrder.stukprijs}}</td>
+                <td class="readonly order_orderprijs">{{newOrder.orderprijs}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger"  (click)="cancelNewOrder()"><i class="bi bi-trash"></i></button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-secondary" (click)="cancelOrders()"><i class="bi bi-x-square"></i> Annuleren</button>              
+        </div>
+        <div class="col d-flex justify-content-end">
+            <!-- <button type="submit" #btnSubmit class="btn btn-primary" [disabled]="orderForm.invalid || !orderForm.dirty"><i class="bi bi-check2-square"></i> Opslaan</button> -->
+            <button type="submit" (click)="toggleButtonState(); saveOrders(newOrder)" class="btn btn-primary" [disabled]="isButtonDisabled"><i class="bi bi-check2-square"></i> Opslaan</button>
+        </div>
+    </div>
+</form>
+
+    <!-- bestaande orders -->
+  <!--<app-order *ngFor="let currentOrder of orders; let counter = index; let even = even; let odd = odd" [counter]="counter" [order]="currentOrder" [meetplanId]="meetplanId" [meetpuntId]="meetpuntId" [even]="even" [odd]="odd"></app-order>
+  -->
+    <!-- nieuwe order  
+    <app-order [meetplanId]="meetplanId" [meetpuntId]="meetpuntId"></app-order>
+    -->  
+<!--
+    </div>
+-->

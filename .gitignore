@@ -128,3 +128,20 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+.ds_store
+
+# WRIJ-mbs-frontend (Angular app)
+wrij-mbs-frontend/node_modules
+wrij-mbs-frontend/dist
+wrij-mbs-frontend/angular/cache/*
+wrij-mbs-frontend/dist/*
+
+# WRIJ-mbs-backend (Express app)
+wrij-mbs-backend/.env
+wrij-mbs-backend/databas.json
+wrij-mbs-backend/node_modules/*
+wrij-mbs-backend/build/*
+wrij-mbs-backend/logs/*
+

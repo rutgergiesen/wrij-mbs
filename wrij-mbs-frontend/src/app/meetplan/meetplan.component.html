@@ -1,0 +1,136 @@
+<div *ngIf="meetplan" class="container-fluid ">
+    <h3>Meetplan: {{ meetplan.naam }} </h3>
+</div>
+<div class="row">
+    <div class="col-6 pe-0">
+        <div class="card m-1">
+            <div class="card-body">
+                <div *ngIf="meetplan">
+                <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)" class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="form-floating mb-2">
+                                <input type="text" required class="form-control" id="meetplannaam" placeholder="Naam van dit meetplan" [(ngModel)]="meetplan.naam" #meetplannaam="ngModel" name="meetplannaam">
+                                <label for="meetplannaam">Naam</label>
+                                <div [hidden]="meetplannaam.valid || meetplannaam.pristine" class="alert alert-danger">
+                                    Vul een naam in
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class=" form-floating mb-2">
+                                <select class="form-select" id="status" name="status" [(ngModel)]="meetplan.status">
+                                    <option *ngFor="let status of statusOpties" [value]="status">{{status}}</option>
+                                </select>
+                                <label for="status"  class="form-label">Status</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating mb-2" >
+                                <textarea class="form-control" style="height: 140px" id="meetplanbehoefte" name="meetplanbehoefte" placeholder="Reden om te meten" [(ngModel)]="meetplan.behoefte"></textarea>
+                                <label for="meetplanbehoefte">Behoefte</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" id="opdrachtgever" name="opdrachtgever" placeholder="Opdrachtgever" [(ngModel)]="meetplan.opdrachtgever">
+                                <label for="opdrachtgever">Opdrachtgever</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" id="contactpersoon" name="contactpersoon" placeholder="Contactpersoon" [(ngModel)]="meetplan.contactpersoon">
+                                <label for="contactpersoon">Contactpersoon</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-floating mb-2">
+                                <select class="form-select" id="startJaar" name="startjaar" [(ngModel)]="meetplan.startjaar">
+                                    <option *ngFor="let jaar of jaarOpties" [value]="jaar">{{jaar}}</option>
+                                </select>
+                                <label for="startJaar"  class="form-label">Van</label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating mb-2">
+                                <select class="form-select" id="eindjaar" name="eindjaar" [(ngModel)]="meetplan.eindjaar">
+                                    <option *ngFor="let jaar of jaarOpties" [value]="jaar">{{jaar}}</option>
+                                </select>
+                                <label for="eindjaar"  class="form-label">t/m</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-floating mb-2">
+                                <select class="form-select" [(ngModel)]="meetplan.type" name="type" id="type">
+                                    <option *ngFor="let typeOptie of typeOpties" [value]="typeOptie">{{typeOptie}}</option>
+                                </select>
+                                <label for="type"  class="form-label">Type meetplan</label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating mb-2">
+                                <input type="number" class="form-control" id="projectnr" name="projectnr" placeholder="Projectnummer" [(ngModel)]="meetplan.projectnr">
+                                <label for="projectnr">Projectnummer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" id="code" name="code" placeholder="Meetplancode" [(ngModel)]="meetplan.code">
+                                <label for="code">Meetplancode</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" id="aqlcode" name="aqlcode" placeholder="AQL-code" [(ngModel)]="meetplan.aqlcode">
+                                <label for="aqlcode">AQL-code</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" (click)="cancel()" class="btn btn-info"><i class="bi bi-x-square"></i> Annuleren</button>                                    
+                            <button *ngIf="!isNewMeetplan" type="submit" (click)="delete()" class="btn btn-danger"><i class="bi bi-trash"></i> Verwijderen</button>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <button *ngIf="isNewMeetplan" type="submit" [disabled]="editForm.invalid || !editForm.dirty" (click)="add()" class="btn btn-primary"><i class="bi bi-check2-square"></i> Toevoegen</button>
+                            <button *ngIf="!isNewMeetplan"  type="submit" [disabled]="editForm.invalid || !editForm.dirty" (click)="save()" class="btn btn-primary"><i class="bi bi-check2-square"></i> Opslaan</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="meetplan && meetplan.id > 0" class="col-6 ps-0">
+        <div class="card m-1">
+            <div class="card-body">
+                <h3 class="card-title">Kosten</h3>
+                <app-kosten-tabellen [meetplanId]="meetplan.id" [nrOfKostenUpdates]="nrOfMeetpuntenChanges"></app-kosten-tabellen>
+            </div>
+        </div>
+        <div class="card m-1">
+            <div class="card-body">
+                <h3 class="card-title">Kaart</h3> 
+                Hier komt een kaart met meetpunten
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="meetplan && meetplan.id > 0" class="card m-1">
+    <div class="card-body">
+        <app-meetpunten [meetplanId]="meetplan.id" [meetpakketten]="meetpakketten" (meetpuntenChangedEvent)="updateKosten($event)" ></app-meetpunten>
+    </div>
+</div>
+

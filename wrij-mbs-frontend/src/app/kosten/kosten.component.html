@@ -1,0 +1,78 @@
+<div class="container-fluid maincontent  mb-2">
+    <div class="row">
+        <div class="offcanvas-body col-2 p-4 border-end">
+            <h4>Filters</h4>
+            <div class="row">
+                <div class="row mb-2">
+                    <div class="col-4"><label for="status"  class="form-label">Status:</label></div>
+                    <div class="col-8">
+                        <select class="form-select" id="status" name="status" [(ngModel)]="status" (change)="ngOnInit()">
+                            <option [value]="undefined">Alles</option>
+                            <option *ngFor="let status of statusOpties" [value]="status">{{status}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                Periode: <br/>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2"><label for="startjaar"  class="form-label">Van:</label></div>
+                <div class="col-6">
+                    <select class="form-select" id="startjaar" name="eindjaar" [(ngModel)]="startjaar" (change)="ngOnInit()">
+                        <option *ngFor="let jaar of jaarOpties" [value]="jaar">{{jaar}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2"><label for="eindjaar"  class="form-label">t/m:</label></div>
+                <div class="col-6">
+                    <select class="form-select" id="eindjaar" name="eindjaar" [(ngModel)]="eindjaar" (change)="ngOnInit()">
+                        <option *ngFor="let jaar of jaarOpties" [value]="jaar">{{jaar}}</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <br/><br/><br/><br/><br/><br/><br/>
+
+            
+            
+            <!-- <label for="dateRange" class="form-label">Jaar</label>
+            <input type="range" class="form-range" min="2020" max="2036" step="1" id="dateRange>"/> -->
+            <p>
+                TODO: kunnen filterer op:<br/>
+                - Opdrachtgever<br/>
+                - Meetpunten<br/>
+            </p>
+
+        </div>        
+
+        <div class="col-10">
+            Geselecteerde filters: 
+            <button *ngIf="startjaar !== undefined" class="btn btn-sm btn-outline-primary ms-2" (click)="resetStartjaar()"><i class="bi bi-x-circle"></i> Vanaf: {{ startjaar }}</button>
+            <button *ngIf="eindjaar !== undefined" class="btn btn-sm btn-outline-primary ms-2" (click)="resetEindjaar()"><i class="bi bi-x-circle"></i> T/m: {{ eindjaar }}</button>
+            <button *ngIf="status !== undefined" class="btn btn-sm btn-outline-primary ms-2" (click)="resetStatus()"><i class="bi bi-x-circle"></i> Status: {{ status }}</button>
+
+            <div class="row p-2 mt-4 mb-4">
+
+                <h3>Totale kosten</h3>
+
+                <div class="container-md row w-75">
+                    <app-kosten-tabel [startjaar]="startjaar" [eindjaar]="eindjaar" [status]="status"></app-kosten-tabel>
+                </div>
+            </div>
+            <h3>Kosten per meetplan</h3>
+
+            <div *ngFor="let meetplan of meetplannen" class="row p-2 mt-4 mb-4">
+                <h4>{{ meetplan.naam }}</h4>
+
+                <div class="container-md row w-75">
+                    <app-kosten-tabellen [meetplanId]="meetplan.id" [startjaar]="startjaar" [eindjaar]="eindjaar" [status]="status"></app-kosten-tabellen>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      <!--<h6 class="card-subtitle mb-2 text-body-secondary">Administratieve gegevens van het meetplan</h6>-->

@@ -1,0 +1,16 @@
+{
+    "dev": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "wrij-mbs",
+      "user": "wrij-admin",
+      "password": "3xspringen2xstampen"
+    },
+    "test": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "wrij-mbs-test",
+      "user": "wrij-admin",
+      "password": "3xspringen2xstampen"
+    }
+  }
