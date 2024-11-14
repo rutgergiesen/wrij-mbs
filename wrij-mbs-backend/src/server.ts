@@ -10,6 +10,7 @@ import orders_routes from './handlers/orders';
 import meetpakketten_routes from './handlers/meetpakketten';
 import kosten_routes from './handlers/kosten';
 import users_routes from './handlers/users';
+import init_route from './handlers/init';
 import morganMiddleware from './utilities/morganMiddleware';
 
 dotenv.config();
@@ -52,6 +53,7 @@ meetpunten_routes(app);
 meetpakketten_routes(app);
 kosten_routes(app);
 users_routes(app);
+init_route(app);
 
 app.use(errorHandler);
 

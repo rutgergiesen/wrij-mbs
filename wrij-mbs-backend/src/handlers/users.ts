@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 import Logger from "../utilities/logger";   
 import { User, UserStore } from "../models/user";
+
 dotenv.config();
 
 const {
@@ -13,18 +14,19 @@ const {
 const store = new UserStore();
 
 const create = async (_req: Request, res: Response) => {
-    console.log('Create in Users handler file was called');
+    Logger.info('Create in Users handler file was called');
 
     try{
-        Logger.info('Create in Users handler file = try block');
+        //Logger.info('Create in Users handler file = try block');
         
         const user : User = {
             username: _req.body.username,
             password: _req.body.password,
         };
 
-        Logger.info('Create in Users handler file = try block 2');
+        //Logger.info('Create in Users handler file = try block 2');
         const newUser = await store.create(user);
+        Logger.info('User aangemaakt: ' + JSON.stringify(newUser));
         var token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET!);
         res.json(token);
     }

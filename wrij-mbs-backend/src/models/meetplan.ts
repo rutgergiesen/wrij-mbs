@@ -21,7 +21,6 @@ export class MeetplanStore {
     async index(search?: String, status?: String, startjaar?: Number, eindjaar?: Number): Promise<Meetplan[]> {
         try{
             Logger.info('Meetplan index was called');
-            Logger.info(`Client: ${JSON.stringify(Client)}`);
 
             const conn = await Client.connect();
             let sql = 'SELECT * FROM tblMeetplannen';
@@ -51,8 +50,8 @@ export class MeetplanStore {
                 sql_where = ' WHERE ' + sql_where;
             sql = sql + sql_where + ` ORDER BY naam ASC`
 
-
             const result = await conn.query(sql);
+
             //console.log(sql);
             conn.release();
             return result.rows;            
@@ -94,7 +93,7 @@ export class MeetplanStore {
                 versie, 
                 aqlcode, 
                 status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`;
-            console.log(sql);
+
             const result = await conn.query(sql, [meetplan.naam, meetplan.behoefte, meetplan.code, meetplan.contactpersoon, meetplan.opdrachtgever, meetplan.startjaar, meetplan.eindjaar, meetplan.type, meetplan.projectnr, meetplan.versie, meetplan.aqlcode, meetplan.status]);// , 1234, 1, meetplan.aqlcode, meetplan.status]);
             //console.log(`Result: ${JSON.stringify(result.rows[0])}`); 
             conn.release();
@@ -124,10 +123,10 @@ export class MeetplanStore {
                 status = $13
                 WHERE ID=$1 RETURNING *`
             //UPDATE tblMeetplannen (naam, behoefte, code, contactpersoon, opdrachtgever, startjaar, eindjaar, type, projectnr, versie, aqlcode, status) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10. $11, $12) WHERE ID=$1 RETURNING *';
-            console.log(sql);
+
             //const result = await conn.query(sql, [meetplan.id, meetplan.naam, meetplan.behoefte, meetplan.code, meetplan.contactpersoon, meetplan.opdrachtgever, meetplan.startjaar, meetplan.eindjaar, meetplan.type, meetplan.projectnr, meetplan.versie, meetplan.aqlcode, meetplan.status]);
             const result = await conn.query(sql, [meetplan.id, meetplan.naam, meetplan.behoefte, meetplan.code, meetplan.contactpersoon, meetplan.opdrachtgever, meetplan.startjaar, meetplan.eindjaar, meetplan.projectnr, meetplan.type, meetplan.versie, meetplan.aqlcode, meetplan.status]);
-            console.log(`Result: ${JSON.stringify(result.rows[0])}`);
+
             conn.release();
             return result.rows[0];   
         }

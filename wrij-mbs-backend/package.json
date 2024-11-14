@@ -1,10 +1,11 @@
 {
-  "name": "wij-mbs-backend",
+  "name": "wrij-mbs-backend",
   "version": "0.0.1",
   "description": "Backend WRIJ meetplan beheer systeem",
   "main": "server.js",
   "scripts": {
     "start": "nodemon src/server.ts",
+    "init-app": "init-wrij-mbs",
     "jasmine": "jasmine",
     "test": "npm run build && npm run jasmine",
     "build": "npx tsc"
